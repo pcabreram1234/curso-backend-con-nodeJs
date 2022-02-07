@@ -1,0 +1,41 @@
+{
+  "name": "backend-con-nodejs",
+  "version": "1.0.0",
+  "description": "Repositorio para guardar todo lo relacionado al curso de Backend con nodeJs de Platzi",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "linit": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcabreram1234/curso-backend-con-nodeJs.git"
+  },
+  "keywords": [
+    "nodeJs",
+    "JavaScript",
+    "Backend",
+    "Platzi",
+    "web",
+    "webDevelopment"
+  ],
+  "author": "Phillilp Cabrera",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pcabreram1234/curso-backend-con-nodeJs/issues"
+  },
+  "homepage": "https://github.com/pcabreram1234/curso-backend-con-nodeJs#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.5",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
