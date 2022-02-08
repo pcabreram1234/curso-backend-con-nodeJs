@@ -24,10 +24,42 @@ router.get('/filter', (resq, resp) => {
 
 router.get('/:id', (req, resp) => {
   const { id } = req.params;
+  if (id === '999') {
+    resp.status(404).json({
+      message: 'Not Found!',
+    });
+  } else {
+    resp.json({
+      id,
+      name: 'product 2',
+      price: 2000,
+    });
+  }
+});
+
+router.post('/', (req, resp) => {
+  const body = req.body;
+  resp.status(201).json({
+    message: 'Created',
+    data: body,
+  });
+});
+
+router.patch('/:id', (req, resp) => {
+  const { id } = req.params;
+  const body = req.body;
   resp.json({
+    message: 'Updated',
+    data: body,
     id,
-    name: 'product 2',
-    price: 2000,
+  });
+});
+
+router.delete('/:id', (req, resp) => {
+  const { id } = req.params;
+  resp.json({
+    message: 'deleted',
+    id,
   });
 });
 

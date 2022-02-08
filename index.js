@@ -3,6 +3,8 @@ const routerApi = require('./routes/index');
 const app = express();
 const port = 3120;
 
+app.use(express.json());
+
 app.get('/', (req, resp) => {
   resp.send('Hola mi server en express');
 });
