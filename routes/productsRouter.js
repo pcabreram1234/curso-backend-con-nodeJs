@@ -1,20 +1,10 @@
 const express = require('express');
-const { faker } = require('@faker-js/faker');
+const ProductsServices = require('../services/productService');
 const router = express.Router();
+const service = new ProductsServices();
 
-router.get('/', (req, resp) => {
-  const products = [];
-  const { size } = req.query;
-  const limit = size || 10;
-
-  for (let i = 0; i < limit; i++) {
-    products.push({
-      id: Math.random() * 20,
-      name: faker.commerce.productName(),
-      price: parseInt(faker.commerce.price(), 10),
-      image: faker.image.imageUrl(),
-    });
-  }
+router.get('/', async (req, resp) => {
+  const products = await service.find();
   resp.json(products);
 });
 
@@ -24,42 +14,35 @@ router.get('/filter', (resq, resp) => {
 
 router.get('/:id', (req, resp) => {
   const { id } = req.params;
-  if (id === '999') {
-    resp.status(404).json({
-      message: 'Not Found!',
-    });
-  } else {
-    resp.json({
-      id,
-      name: 'product 2',
-      price: 2000,
-    });
-  }
+  const product = service.findeOne(id);
+  resp.json(product);
 });
 
 router.post('/', (req, resp) => {
   const body = req.body;
-  resp.status(201).json({
-    message: 'Created',
-    data: body,
-  });
+  const newProduct = service.create(body);
+  resp.status(201).json(newProduct);
 });
 
-router.patch('/:id', (req, resp) => {
-  const { id } = req.params;
-  const body = req.body;
-  resp.json({
-    message: 'Updated',
-    data: body,
-    id,
-  });
+router.patch('/:id', async (req, resp) => {
+  try {
+    const { id } = req.params;
+    const body = req.body;
+    const product = await service.update(id, body);
+    resp.json(product);
+  } catch (error) {
+    resp.status(404).json({
+      message: error.message,
+    });
+  }
 });
 
 router.delete('/:id', (req, resp) => {
   const { id } = req.params;
+  const product = service.delete(id);
   resp.json({
-    message: 'deleted',
-    id,
+    producto: product,
+    meessage: 'Producto eliminado',
   });
 });
 
