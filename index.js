@@ -1,7 +1,7 @@
 const express = require('express');
 const routerApi = require('./routes/index');
 const app = express();
-const port = 3120;
+const port = process.env.PORT || 3120;
 
 const {
   logErrors,
